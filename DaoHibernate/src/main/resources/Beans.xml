@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id = "service" class="service.UserServicesImpl">
+        <constructor-arg ref = "userdao"/>
+        <constructor-arg ref="cardao"/>
+    </bean>
+
+    <bean id="userdao" class="dao.UserDaoJdbcImpl">
+            <constructor-arg ref = "sessionFactory"/>
+    </bean>
+
+    <bean id="cardao" class="dao.CarDaoJdbcImpl">
+        <constructor-arg ref = "sessionFactory"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+
+        <property name="annotatedClasses">
+            <list>
+                <value>models.User</value>
+                <value>models.Car</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</prop>
+                <prop key="hibernate.current_session_context_class">thread</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value= "jdbc:postgresql://localhost:5432/usersandcars"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="123"/>
+    </bean>
+
+
+</beans>
