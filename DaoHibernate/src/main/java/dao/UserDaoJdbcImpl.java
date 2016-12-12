@@ -23,7 +23,7 @@ public class UserDaoJdbcImpl implements UserDao {
     public List<User> findAll() {
         Session session = getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query query = session.createQuery("FROM User");
+        Query query = session.createQuery("FROM User ORDER BY id ASC");
         List<User> result = query.list();
         session.getTransaction().commit();
         return result;
@@ -40,8 +40,11 @@ public class UserDaoJdbcImpl implements UserDao {
         return result;
     }
 
-    public void save(User user) {
-
+    public void write(User user) {
+        Session session = getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
     }
 
     public void delete(int id) {

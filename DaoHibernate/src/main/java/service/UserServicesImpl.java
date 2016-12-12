@@ -17,8 +17,7 @@ public class UserServicesImpl implements UserServices {
 
 
     public List<User> showAllUsers() {
-        List<User> tempList = userDao.findAll();
-        return tempList;
+        return userDao.findAll();
     }
 
     public boolean isRegistred(String name) {
@@ -26,7 +25,7 @@ public class UserServicesImpl implements UserServices {
     }
 
     public void addUser(User user) {
-        userDao.save(user);
+        userDao.write(user);
     }
 
     public void delUser(int id) {
@@ -34,8 +33,7 @@ public class UserServicesImpl implements UserServices {
     }
 
     public List<User> findUser(int id) {
-        List<User> users = userDao.find(id);
-        return users;
+        return userDao.find(id);
     }
 
     public void updateUser(User user) {
@@ -43,8 +41,7 @@ public class UserServicesImpl implements UserServices {
     }
 
     public List<Car> showAllCars() {
-        List<Car> tmpList = carDao.findAll();
-        return tmpList;
+        return carDao.findAll();
     }
 
     public void addCar(Car car) {
@@ -56,8 +53,7 @@ public class UserServicesImpl implements UserServices {
     }
 
     public Car findCar(int id) {
-        Car car = carDao.find(id);
-        return car;
+        return carDao.find(id);
     }
 
     public void updateCar(Car car) {

@@ -20,8 +20,8 @@ public class User {
     private User() {
     }
 
-    public User(int id, String name, int age, String city) {
-        this.id = id;
+    public User( String name, int age, String city) {
+
         this.name = name;
         this.age = age;
         this.city = city;
@@ -34,7 +34,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", city='" + city + '\'' +
-                '}';
+                "} \n";
     }
 
     public int getId() {
